@@ -21,3 +21,27 @@ int main(int argc, const char** argc) {
 	return 0;
 
 }
+
+//Function to create an empty game board. 
+char** makeBoard(int size) {
+
+	char** newBoard = NULL;
+	int i = 0; 
+	
+	newBoard = (char**)malloc(sizeof(char)*size);
+	if(newBoard == NULL) {
+		fprintf(stderr, "Could not allocate heap space for new game board!\n");
+		exit(1);
+	}
+
+	for(i = 0; i < size; i++) {
+		newBoard[i] = (char*)malloc(sizeof(char)*size);
+		if(newBoard[i] == NULL) {
+			fprintf(stderr, "Error: Could not allocate heap space for rows!\n");
+		}
+	}
+		      
+	return newBoard; 
+
+
+}
