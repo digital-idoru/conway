@@ -21,7 +21,7 @@ int main(int argc, const char** argv) {
 		exit(1);
 	}
 
-	if ( (initialConfig = fopen(argv[1], "r")) == NULL) {
+	if ( (initialConfig = fopen(argv[FILEPARAM], "r")) == NULL) {
 		fprintf(stderr, "Could not open initial configuration file!\n");
 		exit(1);
 	}
