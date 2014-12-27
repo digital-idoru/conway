@@ -17,9 +17,17 @@ int main(int argc, const char** argv) {
 	FILE* initialConfig = NULL; //File containing the initial configuration. 
 
 	if(argc != PARAMS) {
-		fprintf(stderr, "Usage: conway [file]");
+		fprintf(stderr, "Usage: conway [file]\n");
 		exit(1);
 	}
+
+	if ( (initialConfig = fopen(argv[1], "r")) == NULL) {
+		fprintf(stderr, "Could not open initial configuration file!\n");
+		exit(1);
+	}
+
+	fscanf(initialConfig, "%d", &gameSize);
+	
 
 	board = makeBoard(gameSize);
 	printBoard(board, gameSize);
