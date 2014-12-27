@@ -8,15 +8,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "prototypes.h"
+#include "symbolics.h"
 
 int main(int argc, const char** argv) {
 
 	int gameSize = 0; //Size of the board we want. 
 	char** board = NULL; //Initial board. 
+	FILE* initialConfig = NULL; //File containing the initial configuration. 
 
-	//todo: Make this readable from a file
-	printf("Enter size of matrix: ");
-	scanf("%d", &gameSize);
+	if(argc != PARAMS) {
+		fprintf(stderr, "Usage: conway [file]");
+		exit(1);
+	}
+
 	board = makeBoard(gameSize);
 	printBoard(board, gameSize);
 
@@ -65,15 +69,6 @@ void printBoard(char** game, int size) {
 		printf("\n");
 	}
 }	
-
-//Convention is that the file is the structured that 
-//the first line contains the size of the board, an integer, 
-//then the next n lines correspond to the rows of the matrix starting positions. 
-void openBoard(char* filename) {
-
-
-
-}
 	
 
 
