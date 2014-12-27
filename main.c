@@ -9,14 +9,15 @@
 #include <stdlib.h>
 #include "prototypes.h"
 
-int main(int argc, const char** argc) {
+int main(int argc, const char** argv) {
 
 	int gameSize = 0; //Size of the board we want. 
-	
-	//todo: Make this readable from a file
-	prinf("Enter size of matrix: ");
-	scanf("%d", &gameSize);
+	char** board = NULL; //Initial board. 
 
+	//todo: Make this readable from a file
+	printf("Enter size of matrix: ");
+	scanf("%d", &gameSize);
+	board = makeBoard(gameSize);
 
 	return 0;
 
@@ -25,10 +26,10 @@ int main(int argc, const char** argc) {
 //Function to create an empty game board. 
 char** makeBoard(int size) {
 
-	char** newBoard = NULL;
-	int i = 0; 
+	char** newBoard = NULL; //empty board. 
+	int i = 0, j = 0, k = 0; //loop counters. 
 	
-	newBoard = (char**)malloc(sizeof(char)*size);
+	newBoard = (char**)malloc(sizeof(char*)*size);
 	if(newBoard == NULL) {
 		fprintf(stderr, "Could not allocate heap space for new game board!\n");
 		exit(1);
@@ -38,6 +39,13 @@ char** makeBoard(int size) {
 		newBoard[i] = (char*)malloc(sizeof(char)*size);
 		if(newBoard[i] == NULL) {
 			fprintf(stderr, "Error: Could not allocate heap space for rows!\n");
+		}
+	}
+	
+	//Initialize everything to "O" meaning "Dead" 
+	for(j = 0; j < size; j++) {
+		for(k = 0; k < size; k++) {
+			newBoard[j][k] = "O";
 		}
 	}
 		      
