@@ -65,4 +65,16 @@ void printBoard(char** game, int size) {
 		printf("\n");
 	}
 }	
+
+//Convention is that the file is the structured that 
+//the first line contains the size of the board, an integer, 
+//then the next n lines correspond to the rows of the matrix starting positions. 
+void openBoard(char* filename) {
+
+
+
+}
 	
+
+
+
