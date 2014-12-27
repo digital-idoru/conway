@@ -18,6 +18,7 @@ int main(int argc, const char** argv) {
 	printf("Enter size of matrix: ");
 	scanf("%d", &gameSize);
 	board = makeBoard(gameSize);
+	printBoard(board, gameSize);
 
 	return 0;
 
@@ -45,7 +46,7 @@ char** makeBoard(int size) {
 	//Initialize everything to "O" meaning "Dead" 
 	for(j = 0; j < size; j++) {
 		for(k = 0; k < size; k++) {
-			newBoard[j][k] = "O";
+			newBoard[j][k] = 'O';
 		}
 	}
 		      
@@ -53,3 +54,15 @@ char** makeBoard(int size) {
 
 
 }
+
+//todo: deal with the size thing better. 
+void printBoard(char** game, int size) {
+	int j = 0, k = 0;
+	for(j = 0; j < size; j++) {
+		for(k = 0; k < size; k++) {
+			printf(" %c ", game[j][k]);
+		}
+		printf("\n");
+	}
+}	
+	
