@@ -34,7 +34,7 @@ int main(int argc, const char** argv) {
 		exit(1);
 	}
 
-	printBoard(board, 3);
+	printBoard(board, gameSize);
 
 	return 0;
 
@@ -89,19 +89,16 @@ char** extractBoard(FILE* gameBoard) {
 	int i = 0, j = 0; //Loop counters row i,column j
 	char size[2]; 
 
-	//fscanf(gameBoard, "%d", &gameSize); //Read the board size. 
 	fgets(size, 2, gameBoard);
-	printf("Read size: %s\n", size); 
-
 	gameSize = atoi(size);
-	printf("Game size is: %d\n", gameSize); 
-
 	extracted = makeBoard(gameSize); //Create a blank board to start with. 
 	printBoard(extracted, gameSize); 
 	for(i = 0; i < gameSize; i++) {
-		printf("%s\n", fgets(extracted[i], gameSize, gameBoard));
+		for(j = 0; j < gameSize; j++) {
+			fscanf(gameBoard, " %c", &extracted[i][j]);
+		}
 	}
-
+	printBoard(extracted, gameSize);
 	return extracted; 
 
 
