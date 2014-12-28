@@ -81,21 +81,23 @@ void printBoard(char** game, int size) {
 		printf("\n");
 	}
 }	
-	
+
+//Function for creating a game board from a file. 
+//todo: clean up the reading the size part.
 char** extractBoard(FILE* gameBoard) {
 
 	char** extracted = NULL; //Game board extracted from the file
 	int gameSize = 0; //Size of the board, i.e. the NxN matrix. 
 	int i = 0, j = 0; //Loop counters row i,column j
-	char size[2]; 
-
-	fgets(size, 2, gameBoard);
+	char size[2]; //clean this up eventually. 
+ 
+	fgets(size, 2, gameBoard); //eww 
 	gameSize = atoi(size);
 	extracted = makeBoard(gameSize); //Create a blank board to start with. 
 	printBoard(extracted, gameSize); 
 	for(i = 0; i < gameSize; i++) {
 		for(j = 0; j < gameSize; j++) {
-			fscanf(gameBoard, " %c", &extracted[i][j]);
+			fscanf(gameBoard, " %c", &extracted[i][j]); //the trick here is to use the space in front of the %c. 
 		}
 	}
 	printBoard(extracted, gameSize);
