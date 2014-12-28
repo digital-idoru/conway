@@ -4,3 +4,4 @@
 char** makeBoard(int);
 void printBoard(char**, int);
 void readBoard(FILE*); 
+char** extractBoard(FILE*);

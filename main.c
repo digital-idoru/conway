@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "prototypes.h"
 #include "symbolics.h"
 
@@ -25,12 +26,15 @@ int main(int argc, const char** argv) {
 		fprintf(stderr, "Could not open initial configuration file!\n");
 		exit(1);
 	}
-
-	fscanf(initialConfig, "%d", &gameSize);
 	
+	
+	board = extractBoard(initialConfig);
+	if(board == NULL) {
+		fprintf(stderr, "Something has gone horribly wrong...\n");
+		exit(1);
+	}
 
-	board = makeBoard(gameSize);
-	printBoard(board, gameSize);
+	printBoard(board, 3);
 
 	return 0;
 
@@ -78,6 +82,29 @@ void printBoard(char** game, int size) {
 	}
 }	
 	
+char** extractBoard(FILE* gameBoard) {
 
+	char** extracted = NULL; //Game board extracted from the file
+	int gameSize = 0; //Size of the board, i.e. the NxN matrix. 
+	int i = 0, j = 0; //Loop counters row i,column j
+	char size[2]; 
+
+	//fscanf(gameBoard, "%d", &gameSize); //Read the board size. 
+	fgets(size, 2, gameBoard);
+	printf("Read size: %s\n", size); 
+
+	gameSize = atoi(size);
+	printf("Game size is: %d\n", gameSize); 
+
+	extracted = makeBoard(gameSize); //Create a blank board to start with. 
+	printBoard(extracted, gameSize); 
+	for(i = 0; i < gameSize; i++) {
+		printf("%s\n", fgets(extracted[i], gameSize, gameBoard));
+	}
+
+	return extracted; 
+
+
+}
 
 
